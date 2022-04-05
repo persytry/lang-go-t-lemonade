@@ -7,15 +7,26 @@ import (
 
 type Clipboard struct{}
 
+var dummyClipboard string
+
 func (_ *Clipboard) Copy(text string, _ *struct{}) error {
 	<-connCh
 	// Logger instance needs to be passed here somehow?
-	return clipboard.WriteAll(lemon.ConvertLineEnding(text, LineEndingOpt))
+    err := clipboard.WriteAll(lemon.ConvertLineEnding(text, LineEndingOpt))
+	if err == nil {
+		return nil
+	}
+    dummyClipboard = text
+    return nil;
 }
 
 func (_ *Clipboard) Paste(_ struct{}, resp *string) error {
 	<-connCh
 	t, err := clipboard.ReadAll()
-	*resp = t
-	return err
+    if err == nil{
+        *resp = t
+        return err
+    }
+    *resp = dummyClipboard
+    return nil;
 }

@@ -7,6 +7,8 @@ remote...lemote...lemode......Lemonade!!! :lemon: :lemon:
 Lemonade is a remote utility tool.
 (copy, paste and open browser) over TCP.
 
+by persy: some linux server has not x11, then use dummy clipboard to service.
+
 [![Build Status](https://travis-ci.org/lemonade-command/lemonade.svg?branch=master)](https://travis-ci.org/lemonade-command/lemonade)
 
 Maintainers wanted
